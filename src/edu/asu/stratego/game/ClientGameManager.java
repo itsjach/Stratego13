@@ -33,6 +33,7 @@ public class ClientGameManager implements Runnable {
     
     private ClientStage stage;
     
+    
     /**
      * Creates a new instance of ClientGameManager.
      * 
@@ -116,7 +117,7 @@ public class ClientGameManager implements Runnable {
         }
         catch (IOException | ClassNotFoundException e) {
             // TODO Handle this exception somehow...
-            System.out.println("Se ha perdido la comunicacion con el oponente");
+            System.out.println("No se puede enviar o recibir informacion del servidor");
         }
     }
     
@@ -157,8 +158,8 @@ public class ClientGameManager implements Runnable {
                     }
                 });
             }
-            catch (InterruptedException | IOException | ClassNotFoundException e) {
-               e.printStackTrace();
+            catch (InterruptedException | IOException | ClassNotFoundException | ClassCastException e) {
+               System.out.println("Se ha perdido informacion con el oponente, se te desconectara del servidor");
             }
         }
     }
