@@ -73,17 +73,16 @@ public class ClientGameManager implements Runnable {
      * @see edu.asu.stratego.gui.ConnectionScene.ConnectToServer
      */
     private void connectToServer() {
+        ConnectionScene.ConnectToServer connectToServer = new ConnectionScene.ConnectToServer();
+        Thread serverConnect = new Thread(connectToServer);
         try {
-            ConnectionScene.ConnectToServer connectToServer = 
-                    new ConnectionScene.ConnectToServer();
-            Thread serverConnect = new Thread(connectToServer);
+            
             serverConnect.setDaemon(true);
             serverConnect.start();
             serverConnect.join();
         }
         catch(InterruptedException e) {
-            // TODO Handle this exception somehow...
-            e.printStackTrace();
+            serverConnect.interrupt();
         }
     }
     
